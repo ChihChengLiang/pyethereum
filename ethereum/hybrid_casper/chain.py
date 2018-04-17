@@ -206,8 +206,8 @@ class Chain(object):
                 h = casper.checkpoint_hashes(casper.last_finalized_epoch())
                 if h != b'\x00' * 32:
                     hist_casper = tester.ABIContract(tester.State(self.mk_poststate_of_blockhash(h)), casper_utils.casper_abi, self.config['CASPER_ADDRESS'])
-                    if hist_casper.get_total_curdyn_deposits() > self.config['NON_REVERT_MIN_DEPOSIT'] and \
-                            hist_casper.get_total_prevdyn_deposits() > self.config['NON_REVERT_MIN_DEPOSIT']:
+                    if hist_casper.total_curdyn_deposits_scaled() > self.config['NON_REVERT_MIN_DEPOSIT'] and \
+                            hist_casper.total_prevdyn_deposits_scaled() > self.config['NON_REVERT_MIN_DEPOSIT']:
                         self.db.put(b'finalized:'+h, b'true')
                         log.info('Finalized checkpoint {} {}'.format(casper.last_finalized_epoch(), encode_hex(h)[:8]))
                     else:

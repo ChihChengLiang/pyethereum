@@ -98,9 +98,9 @@ class TestLangHybrid(object):
 
     def vote(self, validator_index):
         print('New Vote: CurrDynDeposits: {} - Prev Justified: {} - Prev Finalized: {} - Latest nonvoter rescale: {} - Latest voter rescale {}'.format(
-            self.casper.get_total_curdyn_deposits(), self.casper.recommended_source_epoch(),
+            self.casper.total_curdyn_deposits_scaled(), self.casper.recommended_source_epoch(),
             self.casper.last_finalized_epoch(), self.casper.last_nonvoter_rescale(), self.casper.last_voter_rescale()))
-        if self.casper.get_total_curdyn_deposits() > 0 and self.casper.get_total_prevdyn_deposits() > 0:
+        if self.casper.total_curdyn_deposits_scaled() > 0 and self.casper.total_prevdyn_deposits_scaled() > 0:
             print('Vote frac: {}'.format(self.casper.main_hash_voted_frac()))
         self.validators[validator_index].vote(self.casper)
 
