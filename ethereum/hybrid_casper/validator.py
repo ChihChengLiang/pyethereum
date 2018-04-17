@@ -67,9 +67,7 @@ class Validator(object):
         return state.prev_headers[epoch*self.epoch_length * -1 - 1].hash
 
     def get_recommended_casper_msg_contents(self, casper, validator_index):
-        return \
-            casper.recommended_target_hash(), casper.current_epoch(), \
-            casper.recommended_source_epoch()
+        return casper.recommended_target_hash(), casper.current_epoch(), casper.recommended_source_epoch()
 
     def get_validator_index(self, state):
         t = tester.State(state.ephemeral_clone())
